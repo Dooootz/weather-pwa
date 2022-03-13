@@ -21,6 +21,7 @@ const App = () => {
             // pass the query of our search as a parameter 
             const data = await fetchWeather(query)
             
+            console.log(data)
             setWeather(data);
             setQuery('')
         }
