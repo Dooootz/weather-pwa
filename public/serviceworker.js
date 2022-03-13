@@ -9,22 +9,30 @@ const CACHE_NAME = 'version-1'
 // offline.html is the page that loads when their is no internet connection
 const urlsToCache = ['index.html', 'offline.html']
 
-// 'this' represents the SW
+// 'this' (in the service worker file) represents the SW
 const self = this;
 
-// Install SW 
+// === Install SW === 
+
 self.addEventListener('install', (event) => {
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then((cache) => {
+                console.log('Opened cache')
+
+                return cache.addAll(urlsToCache)
+            })
+    )
+});
+
+
+// === Listen for requests ===
+self.addEventListener('fetch', (event) => {
 
 });
 
 
-// Listen for requests 
-self.addEventListener('install', (event) => {
-
-});
-
-
-// Activate the SW
-self.addEventListener('install', (event) => {
+// === Activate the SW ===
+self.addEventListener('activate', (event) => {
 
 });
