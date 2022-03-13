@@ -13,6 +13,21 @@
   <body>
 
     <div id="root"></div>
+
+    // lets register our service worker
+    <script>
+        // first we have to check if our service worker is supported by this browser
+        // if it is true then we have successful access to the service worker
+        if('serviceWorker' in navigator) {
+          // event listener takes 2 parameters
+          // first parameter listens for a 'load; event 
+          // second parameter runs a callback function 
+          // which allows us to create our service worker 
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register();
+          })
+        }
+    </script>
    
   </body>
 </html>
