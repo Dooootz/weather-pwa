@@ -56,6 +56,29 @@ self.addEventListener('fetch', (event) => {
 
 
 // === Activate the SW ===
+// This logic removes all previous caches & keeps the newest versions only
 self.addEventListener('activate', (event) => {
+    // create a variable which is an empty array 
+    const cacheWhiteList = [];
+    // then we PUSH all the caches that we want to keep, to the array
+    cacheWhiteList.push(CACHE_NAME);
+    // then we waitUntil the following code is run
+    event.waitUntil(
+        // cache.keys returns another promise 
+        // we take our cacheNames & return a Promise.all 
+        caches.keys().then((cacheNames) => Promise.all(
+            // inside the Promise.all, we will loop thru all of the cacheNames
+            // for each cacheName, we are going to make a simple if check
+            cacheNames.map((cacheName) => {
+                // if our cacheWhiteList does NOT include the requested cacheName...
+                // then we want to delete that cache
+                if(!cacheWhiteList.includes(cacheName)) {
+                    // delete cache that does not match our whitelist 
+                    // if the cache name matches... then we want to keep it
+                    return caches.delete(cacheName)
+                }
+            })
+        ))
 
+    )
 });
