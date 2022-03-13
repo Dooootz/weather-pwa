@@ -1,2 +1,7 @@
-checkpoint: @21:21 
-continue & complete TUT tomorrow 
+A service worker is a JavaScript file which runs all the time 
+As soon as you open the page it starts running & it keeps running even after you close the page 
+
+Service workers can send push notifications to your mobile phone 
+They can also show something to the page - even if you're offline 
+
+Lets create our first service worker
