@@ -13,9 +13,15 @@ const urlsToCache = ['index.html', 'offline.html']
 const self = this;
 
 // === Install SW === 
-
+// event listener takes 2 parameters 
+// first parameter listens for an install event 
+// second parameter is excecuted once the event is called 
+// ^ get the 'event' as the callback parameter
 self.addEventListener('install', (event) => {
+    // wait until the following code is run
     event.waitUntil(
+        // open the cache & name it 'CACHE_NAME'
+        // this returns a promise
         caches.open(CACHE_NAME)
             .then((cache) => {
                 console.log('Opened cache')
