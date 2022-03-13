@@ -5,3 +5,7 @@ Service workers can send push notifications to your mobile phone
 They can also show something to the page - even if you're offline 
 
 Lets create our first service worker
+
+==========================================================================
+
+App is complete, just need to deploy it to my secure domain to run the final lighthouse PWA audit
