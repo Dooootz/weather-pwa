@@ -23,9 +23,12 @@ self.addEventListener('install', (event) => {
         // open the cache & name it 'CACHE_NAME'
         // this returns a promise
         caches.open(CACHE_NAME)
+            // .then - execute a callback function that
+            // takes the cache as a parameter 
             .then((cache) => {
+                // if successful, log message
                 console.log('Opened cache')
-
+                // return cache & add our set 'urlsToCache'
                 return cache.addAll(urlsToCache)
             })
     )
