@@ -36,8 +36,22 @@ self.addEventListener('install', (event) => {
 
 
 // === Listen for requests ===
+// listen for fetch requests 
 self.addEventListener('fetch', (event) => {
-
+    // if we get a fetch request then 'respondWith' returns a promise
+    event.respondWith(
+        // first we match all the fetch requests  e.g request for an image/assests OR API call etc
+        // then we return another promise
+        caches.match(event.request)
+            .then(() => {
+                // for each request, we want to return a fetch for each specific request 
+                // e.g each time we request, we always want to get updated data 
+                return fetch(event.request) 
+                    // if we catch an error... that means theirs no internet connection
+                    // in that case we return the offline.html (which is our page when theirs no internet connection)
+                    .catch(() => caches.match('offline.html'))
+            })
+    )
 });
 
 
