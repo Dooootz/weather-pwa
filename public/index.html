@@ -24,7 +24,13 @@
           // second parameter runs a callback function 
           // which allows us to create our service worker 
           window.addEventListener('load', () => {
-            navigator.serviceWorker.register();
+            navigator.serviceWorker.register('./serviceworker')
+              // ^ returns a promise
+              // return the data then console log success message 
+              // reg.scope shows the URL on which the service worker was installed / created
+              .then((reg) => console.log('Success: ', reg.scope))
+              // catch & log error
+              .catch((err) => console.log('Failure: ', err))
           })
         }
     </script>
